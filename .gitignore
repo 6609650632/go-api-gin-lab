@@ -1,1 +1,12 @@
-students.db
+# binary
+*.exe
+*.out
+
+# database
+*.db
+
+# env
+.env
+
+# vscode
+.vscode/
