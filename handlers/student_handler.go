@@ -78,7 +78,8 @@ func (h *StudentHandler) CreateStudent(c *gin.Context) {
 	}
 
 	if err := h.Service.CreateStudent(student); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		// ❗ ไม่ expose raw error
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create student"})
 		return
 	}
 
@@ -108,7 +109,7 @@ func (h *StudentHandler) UpdateStudent(c *gin.Context) {
 			c.JSON(http.StatusNotFound, gin.H{"error": "Student not found"})
 			return
 		}
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to update student"})
 		return
 	}
 
@@ -127,7 +128,7 @@ func (h *StudentHandler) DeleteStudent(c *gin.Context) {
 			c.JSON(http.StatusNotFound, gin.H{"error": "Student not found"})
 			return
 		}
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to delete student"})
 		return
 	}
 
